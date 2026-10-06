@@ -8,8 +8,14 @@
   --accent: #d7ff36;
 }
 
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   background: var(--bg);
@@ -17,13 +23,27 @@ body {
   font-family: Manrope, Arial, sans-serif;
   cursor: default;
 }
-a { color: inherit; text-decoration: none; }
-button { font: inherit; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
 
 .nav {
   position: fixed;
   z-index: 20;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 76px;
   padding: 0 4vw;
   display: flex;
@@ -33,12 +53,45 @@ button { font: inherit; }
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--line);
 }
-.logo { font-weight: 800; letter-spacing: -.06em; font-size: 1.25rem; }
-.logo span { font-size: .55rem; vertical-align: top; margin-left: 2px; }
-.nav nav { display: flex; gap: 28px; font-size: .8rem; }
-.nav nav a, .nav-cta { transition: opacity .2s; }
-.nav nav a:hover, .nav-cta:hover { opacity: .5; }
-.nav-cta { font-size: .78rem; border-bottom: 1px solid var(--ink); padding-bottom: 3px; }
+
+.logo {
+  font-weight: 800;
+  letter-spacing: -.06em;
+  font-size: 1.25rem;
+}
+
+.logo span {
+  font-size: .55rem;
+  vertical-align: top;
+  margin-left: 2px;
+}
+
+.nav nav {
+  display: flex;
+  gap: 28px;
+  font-size: .8rem;
+}
+
+.nav nav a,
+.nav-cta {
+  transition: opacity .2s;
+}
+
+.nav nav a:hover,
+.nav-cta:hover {
+  opacity: .5;
+}
+
+.nav-cta {
+  font-size: .78rem;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 3px;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
 
 .hero {
   min-height: 100vh;
@@ -49,12 +102,14 @@ button { font: inherit; }
   flex-direction: column;
   justify-content: center;
 }
+
 .eyebrow {
   margin: 0 0 20px;
   font: 500 .68rem/1.4 "DM Mono", monospace;
   text-transform: uppercase;
   letter-spacing: .08em;
 }
+
 .hero h1 {
   margin: 0;
   max-width: 980px;
@@ -63,13 +118,21 @@ button { font: inherit; }
   letter-spacing: -.09em;
   font-weight: 800;
 }
-.hero h1 em, h2 em { font-family: Georgia, serif; font-weight: 400; letter-spacing: -.07em; }
+
+.hero h1 em,
+h2 em {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -.07em;
+}
+
 .hero-copy {
   max-width: 420px;
   margin: 44px 0 30px 8vw;
   font-size: 1rem;
   line-height: 1.65;
 }
+
 .button {
   width: fit-content;
   margin-left: 8vw;
@@ -80,7 +143,11 @@ button { font: inherit; }
   text-transform: uppercase;
   letter-spacing: .06em;
 }
-.button span { margin-left: 22px; }
+
+.button span {
+  margin-left: 22px;
+}
+
 .hero-mark {
   position: absolute;
   right: 5vw;
@@ -93,11 +160,50 @@ button { font: inherit; }
   pointer-events: none;
 }
 
-.work-section { padding: 10vw 5vw; border-top: 1px solid var(--line); }
-.section-head { display: flex; justify-content: space-between; gap: 40px; align-items: end; margin-bottom: 55px; }
-.section-head h2 { margin: 0; font-size: clamp(3rem, 7vw, 7rem); line-height: .8; letter-spacing: -.08em; }
-.section-note { max-width: 300px; color: var(--muted); font-size: .85rem; line-height: 1.6; }
-.filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 30px; }
+
+/* =========================================
+   WORK SECTION
+========================================= */
+
+.work-section {
+  padding: 10vw 5vw;
+  border-top: 1px solid var(--line);
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  align-items: end;
+  margin-bottom: 55px;
+}
+
+.section-head h2 {
+  margin: 0;
+  font-size: clamp(3rem, 7vw, 7rem);
+  line-height: .8;
+  letter-spacing: -.08em;
+}
+
+.section-note {
+  max-width: 300px;
+  color: var(--muted);
+  font-size: .85rem;
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   FILTERS
+========================================= */
+
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
 .filter {
   border: 1px solid var(--line);
   background: transparent;
@@ -107,17 +213,46 @@ button { font: inherit; }
   text-transform: uppercase;
   cursor: pointer;
 }
-.filter.active, .filter:hover { background: var(--ink); color: var(--bg); }
+
+.filter.active,
+.filter:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+
+/* =========================================
+   PORTFOLIO GRID
+========================================= */
 
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 50px 24px;
 }
-.project { transition: transform .35s ease; }
-.project:hover { transform: translateY(-5px); }
-.project-large { grid-row: span 2; }
-.project-wide { grid-column: span 2; }
+
+.project {
+  transition: transform .35s ease;
+}
+
+.project:hover {
+  transform: translateY(-5px);
+}
+
+.project-large {
+  grid-row: span 2;
+}
+
+.project-wide {
+  grid-column: span 2;
+}
+
+
+/* =========================================
+   OLD VISUAL SYSTEM
+   Kept for compatibility
+========================================= */
+
 .visual {
   min-height: 470px;
   position: relative;
@@ -126,61 +261,92 @@ button { font: inherit; }
   align-items: center;
   justify-content: center;
 }
-.project-large .visual { min-height: 700px; }
-.project-wide .visual { min-height: 500px; }
-.visual span { font-size: clamp(3rem, 8vw, 9rem); line-height: .8; font-weight: 800; letter-spacing: -.09em; text-align: center; }
+
+.project-large .visual {
+  min-height: 700px;
+}
+
+.project-wide .visual {
+  min-height: 500px;
+}
+
+.visual span {
+  font-size: clamp(3rem, 8vw, 9rem);
+  line-height: .8;
+  font-weight: 800;
+  letter-spacing: -.09em;
+  text-align: center;
+}
+
 .visual b {
-  position: absolute; top: 18px; right: 20px;
+  position: absolute;
+  top: 18px;
+  right: 20px;
   font: .65rem "DM Mono", monospace;
 }
-.visual-3d { background: #171717; color: #eee; }
-.visual-3d span { transform: rotate(-9deg); text-shadow: 20px 25px 0 rgba(255,255,255,.08); }
-.visual-design { background: #ddd8cb; }
-.visual-design span { font-family: Georgia, serif; font-weight: 400; font-style: italic; }
-.visual-flyer { background: var(--accent); }
-.visual-flyer span { font-size: clamp(3rem, 6vw, 6rem); }
-.visual-motion { background: #bcbcbc; }
-.visual-motion span { font-family: "DM Mono", monospace; font-size: clamp(2rem, 5vw, 5rem); letter-spacing: -.12em; }
-.visual-chrome { background: #777; color: #eee; }
-.visual-chrome span { text-shadow: 0 0 4px white, 0 0 20px #ddd; }
-.visual-editorial { background: #202020; color: #f2f0ea; }
-.visual-editorial span { font-family: Georgia, serif; font-weight: 400; font-size: clamp(3rem, 6vw, 6rem); }
-.project-meta { display: flex; justify-content: space-between; gap: 20px; padding-top: 12px; }
-.project-meta h3 { margin: 0; font-size: .9rem; }
-.project-meta span { color: var(--muted); font: .63rem "DM Mono", monospace; text-transform: uppercase; }
 
-.about { padding: 12vw 8vw; background: var(--ink); color: var(--bg); }
-.about-layout { display: grid; grid-template-columns: 1.4fr .6fr; gap: 8vw; }
-.about h2 { margin: 0; font-size: clamp(3.5rem, 8vw, 8rem); line-height: .82; letter-spacing: -.09em; }
-.about-text { color: #aaa; line-height: 1.7; font-size: .9rem; }
-.about-text p { margin: 0 0 25px; }
-
-.contact { padding: 12vw 8vw 8vw; min-height: 80vh; display: flex; flex-direction: column; justify-content: center; }
-.contact h2 { margin: 0; font-size: clamp(4rem, 11vw, 11rem); line-height: .8; letter-spacing: -.1em; }
-.contact-copy { max-width: 380px; margin: 50px 0 30px 9vw; color: var(--muted); line-height: 1.6; font-size: .9rem; }
-.contact-email { width: fit-content; margin-left: 9vw; font-size: clamp(1.2rem, 3vw, 2.5rem); border-bottom: 2px solid var(--ink); }
-.contact-links { margin-top: 80px; display: flex; gap: 25px; font: .68rem "DM Mono", monospace; text-transform: uppercase; }
-.contact-links a:hover { text-decoration: underline; }
-
-footer { border-top: 1px solid var(--line); padding: 20px 5vw; display: flex; justify-content: space-between; font: .6rem "DM Mono", monospace; text-transform: uppercase; }
-
-@media (max-width: 720px) {
-  .nav { padding: 0 5vw; }
-  .nav nav { display: none; }
-  .hero { padding: 130px 6vw 15vw; }
-  .hero-copy, .button { margin-left: 0; }
-  .hero-copy { margin-top: 35px; }
-  .section-head, .about-layout { display: block; }
-  .section-note { margin-top: 30px; }
-  .grid { grid-template-columns: 1fr; gap: 40px; }
-  .project-large, .project-wide { grid-column: auto; grid-row: auto; }
-  .visual, .project-large .visual, .project-wide .visual { min-height: 390px; }
-  .project-wide { grid-column: auto; }
-  .contact-copy, .contact-email { margin-left: 0; }
-  .contact-links { margin-top: 55px; flex-wrap: wrap; }
-  footer { gap: 20px; flex-direction: column; }
+.visual-3d {
+  background: #171717;
+  color: #eee;
 }
 
+.visual-3d span {
+  transform: rotate(-9deg);
+  text-shadow: 20px 25px 0 rgba(255,255,255,.08);
+}
+
+.visual-design {
+  background: #ddd8cb;
+}
+
+.visual-design span {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.visual-flyer {
+  background: var(--accent);
+}
+
+.visual-flyer span {
+  font-size: clamp(3rem, 6vw, 6rem);
+}
+
+.visual-motion {
+  background: #bcbcbc;
+}
+
+.visual-motion span {
+  font-family: "DM Mono", monospace;
+  font-size: clamp(2rem, 5vw, 5rem);
+  letter-spacing: -.12em;
+}
+
+.visual-chrome {
+  background: #777;
+  color: #eee;
+}
+
+.visual-chrome span {
+  text-shadow: 0 0 4px white, 0 0 20px #ddd;
+}
+
+.visual-editorial {
+  background: #202020;
+  color: #f2f0ea;
+}
+
+.visual-editorial span {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(3rem, 6vw, 6rem);
+}
+
+
+/* =========================================
+   VIDEO MEDIA FRAMES
+========================================= */
 
 .media-frame {
   min-height: 470px;
@@ -188,8 +354,15 @@ footer { border-top: 1px solid var(--line); padding: 20px 5vw; display: flex; ju
   overflow: hidden;
   background: #d8d6cf;
 }
-.project-large .media-frame { min-height: 700px; }
-.media-frame.dark { background: #151515; }
+
+.project-large .media-frame {
+  min-height: 700px;
+}
+
+.media-frame.dark {
+  background: #151515;
+}
+
 .media-frame video {
   width: 100%;
   height: 100%;
@@ -199,6 +372,7 @@ footer { border-top: 1px solid var(--line); padding: 20px 5vw; display: flex; ju
   object-fit: cover;
   display: block;
 }
+
 .media-label {
   position: absolute;
   z-index: 2;
@@ -209,6 +383,35 @@ footer { border-top: 1px solid var(--line); padding: 20px 5vw; display: flex; ju
   text-transform: uppercase;
   mix-blend-mode: difference;
 }
+
+
+/* =========================================
+   PROJECT META
+========================================= */
+
+.project-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 12px;
+}
+
+.project-meta h3 {
+  margin: 0;
+  font-size: .9rem;
+}
+
+.project-meta span {
+  color: var(--muted);
+  font: .63rem "DM Mono", monospace;
+  text-transform: uppercase;
+}
+
+
+/* =========================================
+   PLACEHOLDERS
+========================================= */
+
 .placeholder {
   min-height: 500px;
   position: relative;
@@ -219,9 +422,21 @@ footer { border-top: 1px solid var(--line); padding: 20px 5vw; display: flex; ju
   color: #f2f0ea;
   overflow: hidden;
 }
-.project-wide .placeholder { min-height: 500px; }
-.placeholder.accent { background: #d7ff36; color: #111; }
-.placeholder.soft { background: #c7c5be; color: #111; }
+
+.project-wide .placeholder {
+  min-height: 500px;
+}
+
+.placeholder.accent {
+  background: #d7ff36;
+  color: #111;
+}
+
+.placeholder.soft {
+  background: #c7c5be;
+  color: #111;
+}
+
 .placeholder span {
   font-size: clamp(2.5rem, 6vw, 7rem);
   line-height: .82;
@@ -229,16 +444,255 @@ footer { border-top: 1px solid var(--line); padding: 20px 5vw; display: flex; ju
   letter-spacing: -.09em;
   text-align: center;
 }
+
 .placeholder b {
   position: absolute;
-  top: 18px; right: 20px;
+  top: 18px;
+  right: 20px;
   font: .65rem "DM Mono", monospace;
 }
-/* MOBILE VIDEO FIX */
-@media (max-width: 768px) {
+
+
+/* =========================================
+   ABOUT
+========================================= */
+
+.about {
+  padding: 12vw 8vw;
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: 1.4fr .6fr;
+  gap: 8vw;
+}
+
+.about h2 {
+  margin: 0;
+  font-size: clamp(3.5rem, 8vw, 8rem);
+  line-height: .82;
+  letter-spacing: -.09em;
+}
+
+.about-text {
+  color: #aaa;
+  line-height: 1.7;
+  font-size: .9rem;
+}
+
+.about-text p {
+  margin: 0 0 25px;
+}
+
+
+/* =========================================
+   CONTACT
+========================================= */
+
+.contact {
+  padding: 12vw 8vw 8vw;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact h2 {
+  margin: 0;
+  font-size: clamp(4rem, 11vw, 11rem);
+  line-height: .8;
+  letter-spacing: -.1em;
+}
+
+.contact-copy {
+  max-width: 380px;
+  margin: 50px 0 30px 9vw;
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: .9rem;
+}
+
+.contact-email {
+  width: fit-content;
+  margin-left: 9vw;
+  font-size: clamp(1.2rem, 3vw, 2.5rem);
+  border-bottom: 2px solid var(--ink);
+}
+
+.contact-links {
+  margin-top: 80px;
+  display: flex;
+  gap: 25px;
+  font: .68rem "DM Mono", monospace;
+  text-transform: uppercase;
+}
+
+.contact-links a:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 20px 5vw;
+  display: flex;
+  justify-content: space-between;
+  font: .6rem "DM Mono", monospace;
+  text-transform: uppercase;
+}
+
+
+/* =========================================
+   DESKTOP / TABLET
+========================================= */
+
+@media (max-width: 720px) {
+
+  .nav {
+    padding: 0 5vw;
+  }
+
+  .nav nav {
+    display: none;
+  }
+
+  .hero {
+    padding: 130px 6vw 15vw;
+  }
+
+  .hero-copy,
+  .button {
+    margin-left: 0;
+  }
+
+  .hero-copy {
+    margin-top: 35px;
+  }
+
+  .section-head,
+  .about-layout {
+    display: block;
+  }
+
+  .section-note {
+    margin-top: 30px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .project-large,
+  .project-wide {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  /*
+     Placeholder lama tetap mempertahankan
+     ukuran mobile seperti desain awal.
+  */
+  .visual,
+  .project-large .visual,
+  .project-wide .visual {
+    min-height: 390px;
+  }
+
+  .project-wide {
+    grid-column: auto;
+  }
+
+  .contact-copy,
+  .contact-email {
+    margin-left: 0;
+  }
+
+  .contact-links {
+    margin-top: 55px;
+    flex-wrap: wrap;
+  }
+
+  footer {
+    gap: 20px;
+    flex-direction: column;
+  }
+
+
+  /* =======================================
+     MOBILE VIDEO FIX
+
+     Video dibuat tetap utuh.
+     Tidak menggunakan object-fit: cover.
+     ======================================= */
+
+  .media-frame {
+    min-height: 0;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-large .media-frame,
+  .project-wide .media-frame {
+    min-height: 0;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
   .media-frame video {
-    object-fit: contain !important;
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
+    min-height: 0;
+    object-fit: contain !important;
+    display: block;
   }
+
+  .media-label {
+    top: 12px;
+    right: 14px;
+  }
+
+
+  /* =======================================
+     MOBILE PROJECT META
+  ======================================= */
+
+  .project-meta {
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .project-meta h3 {
+    font-size: .85rem;
+  }
+
+  .project-meta span {
+    font-size: .58rem;
+    text-align: right;
+  }
+
+
+  /* =======================================
+     MOBILE PLACEHOLDER
+  ======================================= */
+
+  .placeholder,
+  .project-wide .placeholder {
+    min-height: 390px;
+  }
+
+  .placeholder span {
+    font-size: clamp(2.3rem, 11vw, 5rem);
+  }
+
 }
