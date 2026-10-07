@@ -1105,3 +1105,23 @@ footer {
         margin-top: 25px;
     }
 }
+
+/* =========================================================
+   PERFORMANCE / MOBILE VIDEO SAFETY
+   Portfolio videos are loaded and played only when near view.
+========================================================= */
+
+#portfolio .project {
+  content-visibility: auto;
+  contain-intrinsic-size: 500px;
+}
+
+#portfolio .media-frame video {
+  background: var(--surface);
+}
+
+@media (max-width: 720px) {
+  #portfolio .project {
+    contain-intrinsic-size: 360px;
+  }
+}
