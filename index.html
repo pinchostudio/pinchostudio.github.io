@@ -142,11 +142,10 @@
 
             <video
               src="https://res.cloudinary.com/auumfhoe/video/upload/v1791320636/AFTERWAVE_RENEW_DESIGN.webm"
-              autoplay
               muted
               loop
               playsinline
-              preload="metadata">
+              preload="none">
             </video>
 
             <span class="media-label">
@@ -174,11 +173,10 @@
 
             <video
               src="https://res.cloudinary.com/auumfhoe/video/upload/v1791320972/ALDO0001-0600.webm"
-              autoplay
               muted
               loop
               playsinline
-              preload="metadata">
+              preload="none">
             </video>
 
             <span class="media-label">
@@ -206,11 +204,10 @@
 
             <video
               src="https://res.cloudinary.com/auumfhoe/video/upload/v1791320887/DIAZZ1.mp4"
-              autoplay
               muted
               loop
               playsinline
-              preload="metadata">
+              preload="none">
             </video>
 
             <span class="media-label">
@@ -238,11 +235,10 @@
 
             <video
               src="https://res.cloudinary.com/auumfhoe/video/upload/v1791321256/LIBERICA0001-0600.mp4"
-              autoplay
               muted
               loop
               playsinline
-              preload="metadata">
+              preload="none">
             </video>
 
             <span class="media-label">
@@ -270,11 +266,10 @@
 
             <video
               src="https://res.cloudinary.com/auumfhoe/video/upload/v1791320993/NEWSUPERMIL1.webm"
-              autoplay
               muted
               loop
               playsinline
-              preload="metadata">
+              preload="none">
             </video>
 
             <span class="media-label">
@@ -302,11 +297,10 @@
 
             <video
               src="https://res.cloudinary.com/auumfhoe/video/upload/v1791320951/KIMOOO.webm"
-              autoplay
               muted
               loop
               playsinline
-              preload="metadata">
+              preload="none">
             </video>
 
             <span class="media-label">
@@ -334,11 +328,10 @@
 
             <video
               src="https://res.cloudinary.com/auumfhoe/video/upload/v1791321332/RAYMOSKIBIDINEW0001-0600.webm"
-              autoplay
               muted
               loop
               playsinline
-              preload="metadata">
+              preload="none">
             </video>
 
             <span class="media-label">
@@ -366,11 +359,10 @@
 
             <video
               src="https://res.cloudinary.com/auumfhoe/video/upload/v1791321351/PUTRA.webm"
-              autoplay
               muted
               loop
               playsinline
-              preload="metadata">
+              preload="none">
             </video>
 
             <span class="media-label">
@@ -398,11 +390,10 @@
 
             <video
               src="https://res.cloudinary.com/auumfhoe/video/upload/v1791321373/JIAAAA.webm"
-              autoplay
               muted
               loop
               playsinline
-              preload="metadata">
+              preload="none">
             </video>
 
             <span class="media-label">
@@ -430,11 +421,10 @@
 
             <video
               src="https://res.cloudinary.com/auumfhoe/video/upload/v1791321694/BEDJANERS0001-0600.webm"
-              autoplay
               muted
               loop
               playsinline
-              preload="metadata">
+              preload="none">
             </video>
 
             <span class="media-label">
@@ -462,11 +452,10 @@
 
             <video
               src="https://res.cloudinary.com/auumfhoe/video/upload/v1791321707/GLASSYPINCHO0001-0500.mp4"
-              autoplay
               muted
               loop
               playsinline
-              preload="metadata">
+              preload="none">
             </video>
 
             <span class="media-label">
@@ -494,11 +483,10 @@
 
             <video
               src="https://res.cloudinary.com/auumfhoe/video/upload/v1791321752/MECONLY4U_LOGO_ONLY.mp4"
-              autoplay
               muted
               loop
               playsinline
-              preload="metadata">
+              preload="none">
             </video>
 
             <span class="media-label">
@@ -709,6 +697,90 @@
 
 
   <script src="script.js"></script>
+
+  <!-- MOBILE / PERFORMANCE VIDEO MANAGER -->
+  <script>
+    (() => {
+      const videos = document.querySelectorAll('#portfolio .media-frame video');
+
+      if (!videos.length) return;
+
+      const prepareVideo = (video) => {
+        if (video.dataset.loaded === 'true') return;
+
+        const originalSrc = video.getAttribute('src');
+        if (!originalSrc) return;
+
+        video.dataset.src = originalSrc;
+        video.removeAttribute('src');
+        video.load();
+        video.dataset.loaded = 'true';
+      };
+
+      const playVideo = (video) => {
+        if (document.hidden) return;
+        if (video.dataset.loaded !== 'true') prepareVideo(video);
+
+        const promise = video.play();
+        if (promise && typeof promise.catch === 'function') {
+          promise.catch(() => {});
+        }
+      };
+
+      const pauseVideo = (video) => {
+        video.pause();
+      };
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            const video = entry.target;
+
+            if (entry.isIntersecting) {
+              prepareVideo(video);
+
+              if (!video.getAttribute('src') && video.dataset.src) {
+                video.setAttribute('src', video.dataset.src);
+              }
+
+              playVideo(video);
+            } else {
+              pauseVideo(video);
+            }
+          });
+        }, {
+          rootMargin: '250px 0px',
+          threshold: 0.05
+        });
+
+        videos.forEach((video) => observer.observe(video));
+      } else {
+        videos.forEach((video) => {
+          prepareVideo(video);
+
+          if (!video.getAttribute('src') && video.dataset.src) {
+            video.setAttribute('src', video.dataset.src);
+          }
+
+          playVideo(video);
+        });
+      }
+
+      document.addEventListener('visibilitychange', () => {
+        videos.forEach((video) => {
+          if (document.hidden) {
+            pauseVideo(video);
+          } else {
+            const rect = video.getBoundingClientRect();
+
+            if (rect.bottom > 0 && rect.top < window.innerHeight) {
+              playVideo(video);
+            }
+          }
+        });
+      });
+    })();
+  </script>
 
 </body>
 </html>
